@@ -1,0 +1,105 @@
+---
+title: "CodeBook"
+author: "Mariona"
+date: "20/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## DATA
+
+Human Activity Recognition Using Smartphones
+
+Data collected from the accelerometers from the Samsung Galaxy S smartphone: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+Data:
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+
+## TRANSFORMATIONS
+
+The run_analysis.R is the script to create the tidy data following the 5 steps required as described in the course         project’s definition:
+
+1. Download and unzip data
+
+Download the dataset and unzip in the directory into a folder called UCI HAR Dataset
+
+
+2. Files
+
+See all the files that contains UCI HA Dataset
+
+```{r}
+files
+```
+
+3. Assign each data to variables
+
+Create 8 datasets
+
+```{r}
+x_train
+y_train
+subject_train
+x_test
+y_test
+subject_test
+features
+activityLabels
+```
+
+After assign viarables names
+
+
+4. Merges the training and the test sets to create one data set.
+
+Merge datasets with rbind and the final one with cbind. First obtain 3 datasets:
+
+```{r}
+x
+y
+subject
+```
+
+And finally merge in a final dataset, with cbind:
+
+```{r}
+finaldataset
+```
+
+
+5. Extracts only the measurements on the mean and standard deviation for each measurement.
+
+Select the measurements on the mean and standard deviation with the function grepl and finally subset in a new dataset called setforMeanandStd
+
+
+6. Uses descriptive activity names to name the activities in the data set.
+
+Select the activityID in the setforMeanandStd and changed by the activityType that are the names of the activities.
+
+```{r}
+setforMeanandStd
+```
+
+
+7. Appropriately labels the data set with descriptive variable names.
+
+Changes the names of the header of the dataset setforMeanandStd.
+
+```{r}
+setforMeanandStd
+```
+
+
+8. From the data set in step 4, creates a second, independent tidy data set with the average of each                      variable for each activity and each subject.
+
+Finllay, group the data by subjectID and activiy and calculate the mean for each one.
+
+```{r}
+FinalData
+```
+
+Save this that in a txt called tidydata.txt with the function write.table()
