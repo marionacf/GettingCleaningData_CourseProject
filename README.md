@@ -1,1 +1,0 @@
-# GettingCleaningData_CourseProject
